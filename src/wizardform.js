@@ -93,7 +93,7 @@ class WizardForm extends React.Component {
         let forms = this.state.elements;
         for (let i = 0; i < forms.length; i++) {
             if (forms[i].type.name == e.currentTarget.getAttribute('form')) {
-                forms[this.state.step].props.navigate(i);
+                forms[this.state.step].props.navigate(i, this.state.data);
             }
         }
     }
