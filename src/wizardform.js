@@ -91,8 +91,14 @@ class WizardForm extends React.Component {
 
     onHeaderClick(e) {
         let forms = this.state.elements;
+        let canSwitchStep = true;
+
+        if (e.currentTarget.getAttribute('step-disabled')) {
+            canSwitchStep = e.currentTarget.getAttribute('step-disabled') !== 'true';
+        }
+
         for (let i = 0; i < forms.length; i++) {
-            if (forms[i].type.name == e.currentTarget.getAttribute('form')) {
+            if (forms[i].type.name == e.currentTarget.getAttribute('form') && canSwitchStep) {
                 forms[this.state.step].props.navigate(i, this.state.data);
             }
         }

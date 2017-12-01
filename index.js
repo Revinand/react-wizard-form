@@ -125,8 +125,14 @@ var WizardForm = function (_React$Component) {
         key: 'onHeaderClick',
         value: function onHeaderClick(e) {
             var forms = this.state.elements;
+            var canSwitchStep = true;
+
+            if (e.currentTarget.getAttribute('step-disabled')) {
+                canSwitchStep = e.currentTarget.getAttribute('step-disabled') !== 'true';
+            }
+
             for (var i = 0; i < forms.length; i++) {
-                if (forms[i].type.name == e.currentTarget.getAttribute('form')) {
+                if (forms[i].type.name == e.currentTarget.getAttribute('form') && canSwitchStep) {
                     forms[this.state.step].props.navigate(i, this.state.data);
                 }
             }
